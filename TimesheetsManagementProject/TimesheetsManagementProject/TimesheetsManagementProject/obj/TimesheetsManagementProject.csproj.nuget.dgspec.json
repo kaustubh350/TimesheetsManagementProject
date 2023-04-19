@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KaustubhP\\Desktop\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj": {}
+    "D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KaustubhP\\Desktop\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj": {
+    "D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KaustubhP\\Desktop\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj",
+        "projectUniqueName": "D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj",
         "projectName": "TimesheetsManagementProject",
-        "projectPath": "C:\\Users\\KaustubhP\\Desktop\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj",
+        "projectPath": "D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject.csproj",
         "packagesPath": "C:\\Users\\KaustubhP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KaustubhP\\Desktop\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\obj\\",
+        "outputPath": "D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KaustubhP\\AppData\\Roaming\\NuGet\\NuGet.Config",
