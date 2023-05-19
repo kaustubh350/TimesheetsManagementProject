@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="app-timesheetsmgmtproject-eastus-001" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\obj\\Release\\net7\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="TimesheetsManagementProject.Data.AuthDbContext" description="" value="Data Source=tcp:timesheetmgmtserver.database.windows.net,1433;Initial Catalog=timesheetmgmt;User Id=timesheetmgmtserver@timesheetmgmtserver;Password=zcpl@123" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\TimesheetsManagementProject\.Data\.AuthDbContext\.sql$" />
+  </parameter>
+  <parameter name="TimesheetsManagementProject.Data.DataContext" description="" value="Data Source=tcp:timesheetmgmtserver.database.windows.net,1433;Initial Catalog=timesheetmgmt;User Id=timesheetmgmtserver@timesheetmgmtserver;Password=zcpl@123" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\TimesheetsManagementProject\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\TimesheetsManagementProject\.Data\.DataContext\.sql$" />
+  </parameter>
+</parameters>

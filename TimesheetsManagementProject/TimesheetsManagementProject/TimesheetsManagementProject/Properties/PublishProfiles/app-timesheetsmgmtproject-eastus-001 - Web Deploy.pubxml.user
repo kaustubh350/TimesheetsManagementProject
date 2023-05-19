@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkLAE4FQIHUmZMDvyXj4/LgAAAAACAAAAAAAQZgAAAAEAACAAAABtnFImKr1cKtq+flw+ZVvTDji+N3QfzDCR6dHqME56owAAAAAOgAAAAAIAACAAAAAs3ZKkWxgOSxyx81jAPtr48oxB0cDFljo/qBj6Tc2OEIAAAABvWQSBrZ0emNiaItqEAyzsqUdSMx/WQrS3v2j0RqxGL0emGnEfEY+FRdG1JvCcBJrSkD1pRFYQbNLuZ2jxZ28Hg5oHI5TwtpXL2mDZAh2m85UKiNp1kjPHB1NV7Od8G8SbMpLf54EV+rpTau//6dnGriKRv2lzkvzFKHtXgnA870AAAADRzI97Y/sPquegkSmY7u/nATHTksGORmSRVujJ2p8I162UwZy0EPIgiUjISZ61S2KbkSbhF7Z4coDYpbBhjUN5</EncryptedPassword>
+    <History>True|2023-05-17T06:00:49.6068328Z;True|2023-05-17T10:49:10.8063282+05:30;True|2023-05-15T18:38:50.3611920+05:30;False|2023-05-15T18:12:52.2596468+05:30;False|2023-05-15T16:53:13.8501205+05:30;True|2023-05-15T16:10:11.4090752+05:30;True|2023-05-15T15:49:59.1571235+05:30;True|2023-05-15T15:16:07.2268050+05:30;True|2023-05-15T12:53:21.5654233+05:30;True|2023-05-09T21:24:08.8380869+05:30;True|2023-05-09T20:35:27.7573921+05:30;True|2023-05-09T12:17:20.6857237+05:30;True|2023-05-08T17:51:21.8237645+05:30;True|2023-05-08T17:43:26.0253108+05:30;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="TimesheetsManagementProject.Data.AuthDbContext">
+      <Value>Data Source=tcp:timesheetmgmtserver.database.windows.net,1433%3bInitial Catalog=timesheetmgmt%3bUser Id=timesheetmgmtserver%40timesheetmgmtserver%3bPassword=zcpl%40123</Value>
+    </EFMigrations>
+    <EFMigrations Include="TimesheetsManagementProject.Data.DataContext">
+      <Value>Data Source=tcp:timesheetmgmtserver.database.windows.net,1433%3bInitial Catalog=timesheetmgmt%3bUser Id=timesheetmgmtserver%40timesheetmgmtserver%3bPassword=zcpl%40123</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

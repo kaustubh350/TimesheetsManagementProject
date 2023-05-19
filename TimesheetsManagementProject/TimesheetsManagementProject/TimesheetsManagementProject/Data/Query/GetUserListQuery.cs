@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.DataContracts;
 using TimesheetsManagementProject.CommonData;
 using TimesheetsManagementProject.Models.Domain;
 using TimesheetsManagementProject.Models.Dto;
@@ -10,26 +12,28 @@ namespace TimesheetsManagementProject.Data.Query
 {
     public class GetUserListQuery : IRequest<QueryResponse>
     {
+        [DataMember]
+        public int Id { get; set; }
     }
-
+   
     public class GetUserListQueryHandlers : IRequestHandler<GetUserListQuery, QueryResponse>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IClientsRepository _clientsRepository;
 
-        public GetUserListQueryHandlers(IUserRepository userRepository)
+        public GetUserListQueryHandlers(IClientsRepository clientsRepository)
         {
-            _userRepository = userRepository;
+            _clientsRepository = clientsRepository;
         }
 
         public async Task<QueryResponse> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
-            var userLists = await _userRepository.GetUsers();
+            var userLists = await _clientsRepository.GetClientById(request.Id);
 
             return new QueryResponse()
             {
-                Data = userLists.Any() ? userLists : default,
-                IsSuccessful = userLists.Any(),
-                Errors = userLists.Any() ? default : new() { $"No Matching Records Found !!!" }
+                Data = userLists ?? default,
+                IsSuccessful = userLists != null,
+                Errors = userLists !=null ? default : new() { $"No Matching Records Found !!!" }
             };
 
         }

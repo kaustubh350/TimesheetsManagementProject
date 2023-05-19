@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\obj\Release\net7.0\PubTmp\Out\" />
+  <dbfullsql path="D:\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\obj\Release\net7.0\PubTmp\EFSQLScripts\TimesheetsManagementProject.Data.AuthDbContext.sql" />
+  <dbfullsql path="D:\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\TimesheetsManagementProject\obj\Release\net7.0\PubTmp\EFSQLScripts\TimesheetsManagementProject.Data.DataContext.sql" />
+</sitemanifest>
