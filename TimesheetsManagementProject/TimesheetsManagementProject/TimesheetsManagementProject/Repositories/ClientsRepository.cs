@@ -23,23 +23,25 @@ namespace TimesheetsManagementProject.Services
 
         public async Task<Clients> DeleteClient(int clientId)
         {
-            var existingClient = await _dataContext.Clients.FirstOrDefaultAsync(x => x.ClientId == clientId);
-
-            if (existingClient == null)
+            try
             {
-                return null;
+                var existingClient = await _dataContext.Clients.FirstOrDefaultAsync(x => x.ClientId == clientId);
+
+                if (existingClient == null)
+                {
+                    return null;
+                }
+
+                existingClient.IsDeleted = true;
+
+                await _dataContext.SaveChangesAsync();
+
+                return existingClient;
             }
-
-            existingClient.IsDeleted = true;
-
-            await _dataContext.SaveChangesAsync();
-
-            return existingClient;
-        }
-
-        public async Task<Clients> GetClientById(int Id)
-        {
-            return await _dataContext.Clients.Where(x => x.IsDeleted == false).FirstOrDefaultAsync(x => x.ClientId == Id);
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to delete the client.", ex);
+            }
         }
 
         public async Task<List<ClientResponse>> GetClients()
@@ -62,7 +64,6 @@ namespace TimesheetsManagementProject.Services
                         FROM Clients  c
                         WHERE c.IsDeleted = 0
                         ORDER BY c.ClientId
-                            
                     ";
 
                 return (await connection.QueryAsync<ClientResponse>(query).ConfigureAwait(false)).ToList();
@@ -73,34 +74,49 @@ namespace TimesheetsManagementProject.Services
 
         public async Task<Clients> SaveClient(Clients clients)
         {
-            await _dataContext.Clients.AddAsync(clients);
-            await _dataContext.SaveChangesAsync();
-            return clients;
+            try
+            {
+                await _dataContext.Clients.AddAsync(clients);
+                await _dataContext.SaveChangesAsync();
+                return clients;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save the client.", ex);
+            }
         }
 
         public async Task<Clients> UpdateClient(int ClientId, Clients clients)
         {
-            var existingClients = await _dataContext.Clients.FirstOrDefaultAsync(x => x.ClientId == ClientId);
-
-            if (existingClients == null)
+            try
             {
-                return null;
-            }
-            existingClients.ClientName = clients.ClientName;
-            existingClients.CurrencyId = clients.CurrencyId;
-            existingClients.BillingMethodId = clients.BillingMethodId;
-            existingClients.EmailId = clients.EmailId;
-            existingClients.FirstName = clients.FirstName;
-            existingClients.LastName = clients.LastName;
-            existingClients.Phone = clients.Phone;
-            existingClients.Mobile = clients.Mobile;
-            existingClients.Fax = clients.Fax;
-            existingClients.IsDeleted = clients.IsDeleted;
-            existingClients.IsActive = clients.IsActive;
-    
-            await _dataContext.SaveChangesAsync();
+                var existingClients = await _dataContext.Clients.FirstOrDefaultAsync(x => x.ClientId == ClientId);
 
-            return existingClients;
+                if (existingClients == null)
+                {
+                    return null;
+                }
+                existingClients.ClientName = clients.ClientName;
+                existingClients.CurrencyId = clients.CurrencyId;
+                existingClients.BillingMethodId = clients.BillingMethodId;
+                existingClients.EmailId = clients.EmailId;
+                existingClients.FirstName = clients.FirstName;
+                existingClients.LastName = clients.LastName;
+                existingClients.Phone = clients.Phone;
+                existingClients.Mobile = clients.Mobile;
+                existingClients.Fax = clients.Fax;
+                existingClients.IsDeleted = clients.IsDeleted;
+                existingClients.IsActive = clients.IsActive;
+
+                await _dataContext.SaveChangesAsync();
+
+                return existingClients;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update the client.", ex);
+            }
+            
         }
     }
 }

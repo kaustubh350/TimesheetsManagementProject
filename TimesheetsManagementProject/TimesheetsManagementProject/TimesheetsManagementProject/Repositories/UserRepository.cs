@@ -45,7 +45,6 @@ namespace TimesheetsManagementProject.Services
                         FROM users u
                         WHERE u.IsDeleted = 0
                         ORDER BY u.Name
-                            
                     ";
 
                 return (await connection.QueryAsync<UsersResponse>(query).ConfigureAwait(false)).ToList();
@@ -54,16 +53,30 @@ namespace TimesheetsManagementProject.Services
 
         public async Task<Users> SaveUsers(Users users)
         {
-            await _dataContext.Users.AddAsync(users);
-            await _dataContext.SaveChangesAsync();
-            return users;
+            try
+            {
+                await _dataContext.Users.AddAsync(users);
+                await _dataContext.SaveChangesAsync();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save user.", ex);
+            }
         }
 
         public async Task<UserRoles> SaveUserRoles(UserRoles userRoles)
         {
-            await _dataContext.UserRoles.AddAsync(userRoles);
-            await _dataContext.SaveChangesAsync();
-            return userRoles;
+            try
+            {
+                await _dataContext.UserRoles.AddAsync(userRoles);
+                await _dataContext.SaveChangesAsync();
+                return userRoles;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save user role.", ex);
+            }
         }
     }
 }

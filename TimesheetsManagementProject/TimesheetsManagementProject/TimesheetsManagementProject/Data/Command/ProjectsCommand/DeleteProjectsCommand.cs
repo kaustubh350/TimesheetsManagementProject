@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using System.Runtime.Serialization;
 using TimesheetsManagementProject.CommonData;
 using TimesheetsManagementProject.Data.Command.Client;
@@ -11,6 +12,18 @@ namespace TimesheetsManagementProject.Data.Command.ProjectsCommand
         [DataMember]
         public int ProjectId { get; set; }
     }
+
+    public class DeleteProjectsCommandValidator : AbstractValidator<DeleteProjectsCommand>
+    {
+        public DeleteProjectsCommandValidator()
+        {
+            RuleFor(e => e.ProjectId)
+             .NotEmpty().WithMessage("{PropertyName} should not be empty!")
+             .NotNull().WithMessage("{PropertyName} should not be null!")
+             .GreaterThan(0).WithMessage("{PropertyName} should be greater than zero!");
+        }
+    }
+
     public class DeleteProjectsCommandHandlers : IRequestHandler<DeleteProjectsCommand, QueryResponse>
     {
         private readonly IProjectsRepository _projectsRepository;
@@ -28,7 +41,7 @@ namespace TimesheetsManagementProject.Data.Command.ProjectsCommand
             {
                 Data = deleteProjects ?? default,
                 IsSuccessful = deleteProjects != null,
-                Errors = deleteProjects != null ? default : new() { $"You Can not insert new Projects!!!" }
+                Errors = new() { $"No Data exists for provided Id {request.ProjectId} !!!" }
             };
 
         }

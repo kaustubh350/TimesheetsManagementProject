@@ -24,10 +24,18 @@ namespace TimesheetsManagementProject.Services
         }
         public async Task<Projects> SaveProjects(Projects projects)
         {
-            await _dataContext.Projects.AddAsync(projects);
-            await _dataContext.SaveChangesAsync();
-            return projects;
+            try
+            {
+                await _dataContext.Projects.AddAsync(projects);
+                await _dataContext.SaveChangesAsync();
+                return projects;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save the project.", ex);
+            }
         }
+
         public async Task<List<ProjectsResponse>> GetAllProjects()
         {
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DataConnectionStrings")))
@@ -60,42 +68,56 @@ namespace TimesheetsManagementProject.Services
 
         public async Task<Projects> DeleteProjects(int projectId)
         {
-            var existingProjects = await _dataContext.Projects.FirstOrDefaultAsync(x => x.ProjectId == projectId);
-
-            if (existingProjects == null)
+            try
             {
-                return null;
+                var existingProjects = await _dataContext.Projects.FirstOrDefaultAsync(x => x.ProjectId == projectId);
+
+                if (existingProjects == null)
+                {
+                    return null;
+                }
+
+                existingProjects.IsDeleted = true;
+
+                await _dataContext.SaveChangesAsync();
+
+                return existingProjects;
             }
-
-            existingProjects.IsDeleted = true;
-
-            await _dataContext.SaveChangesAsync();
-
-            return existingProjects;
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to delete the project.", ex);
+            }
         }
 
         public async Task<Projects> UpdateProjects(int projectId, Projects projects)
         {
-            var existingProject = await _dataContext.Projects.FirstOrDefaultAsync(x => x.ProjectId == projectId);
-
-            if (existingProject == null)
+            try
             {
-                return null;
+                var existingProject = await _dataContext.Projects.FirstOrDefaultAsync(x => x.ProjectId == projectId);
+
+                if (existingProject == null)
+                {
+                    return null;
+                }
+                existingProject.ProjectName = projects.ProjectName;
+                existingProject.ClientId = projects.ClientId;
+                existingProject.ProjectCost = projects.ProjectCost;
+                existingProject.ProjectHeadId = projects.ProjectHeadId;
+                existingProject.ProjectManagerId = projects.ProjectManagerId;
+                //existingProject.ProjectUsersId = projects.ProjectUsersId;
+                existingProject.Rate = projects.Rate;
+                existingProject.Description = projects.Description;
+                existingProject.IsDeleted = projects.IsDeleted;
+                existingProject.IsActive = projects.IsActive;
+
+                await _dataContext.SaveChangesAsync();
+
+                return existingProject;
             }
-            existingProject.ProjectName = projects.ProjectName;
-            existingProject.ClientId = projects.ClientId;
-            existingProject.ProjectCost = projects.ProjectCost;
-            existingProject.ProjectHeadId = projects.ProjectHeadId;
-            existingProject.ProjectManagerId = projects.ProjectManagerId;
-            //existingProject.ProjectUsersId = projects.ProjectUsersId;
-            existingProject.Rate = projects.Rate;
-            existingProject.Description = projects.Description;
-            existingProject.IsDeleted = projects.IsDeleted;
-            existingProject.IsActive = projects.IsActive;
-
-            await _dataContext.SaveChangesAsync();
-
-            return existingProject;
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update the project.", ex);
+            }
         }
     }
 }

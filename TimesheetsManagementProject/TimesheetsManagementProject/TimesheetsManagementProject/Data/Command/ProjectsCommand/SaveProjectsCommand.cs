@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Azure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Serialization;
 using TimesheetsManagementProject.CommonData;
@@ -24,17 +25,15 @@ namespace TimesheetsManagementProject.Data.Command.ProjectsCommand
         }
 
         public async Task<QueryResponse> Handle(SaveProjectsCommand request, CancellationToken cancellationToken)
-        {
-            var saveProjects = await _projectsRepository.SaveProjects(request.projects);
+        {   
+                var saveProjects = await _projectsRepository.SaveProjects(request.projects);
 
-            return new QueryResponse()
-            {
-               // IsSuccessful = true,
-               // Errors = saveProjects != null  ? new() { "No records  are saved.  Please check logs. !!!" } : null
-                Data = saveProjects,
-                IsSuccessful = true,
-                Errors = saveProjects != null ? default : new() { $"You Can not insert new Clients!!!" }
-            };
+                return new QueryResponse()
+                {
+                    Data = saveProjects,
+                    IsSuccessful = true,
+                    Errors = saveProjects != null ? default : new() { $"You Can not insert new Project!!!" }
+                };
         }
     }
 }

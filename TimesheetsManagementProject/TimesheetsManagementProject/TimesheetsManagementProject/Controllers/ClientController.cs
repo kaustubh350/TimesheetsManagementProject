@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI;
@@ -11,6 +12,7 @@ namespace TimesheetsManagementProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class ClientController : ControllerBase
     {
         private IMediator _mediator;
@@ -45,20 +47,6 @@ namespace TimesheetsManagementProject.Controllers
             var ClientLists = await _mediator.Send(new GetClientQuery());
             return Ok(ClientLists);
         }
-
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[HttpGet("/api/client/byid/list")]
-        //public async Task<IActionResult> GetClientById(int Id)
-        //{
-        //    var clientLists = await _mediator.Send(new GetUserListQuery
-        //      (
-        //        Id = Id
-        //      ));
-            
-        //    return Ok(clientLists);
-        //}
-
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

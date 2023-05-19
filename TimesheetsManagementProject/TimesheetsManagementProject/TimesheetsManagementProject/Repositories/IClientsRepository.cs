@@ -10,7 +10,6 @@ namespace TimesheetsManagementProject.Services
         Task<Clients> SaveClient(Clients clients);
         Task<Clients> DeleteClient(int clientId);
         Task<Clients> UpdateClient(int Id , Clients clients);
-        Task<Clients> GetClientById(int Id);
     }
 
     public class ClientResponse

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using System.Runtime.Serialization;
 using TimesheetsManagementProject.CommonData;
 using TimesheetsManagementProject.Services;
@@ -9,6 +10,17 @@ namespace TimesheetsManagementProject.Data.Command.Client
     {
         [DataMember]
         public int ClientId { get; set; }
+    }
+
+    public class DeleteClientCommandValidator : AbstractValidator<DeleteClientCommand>
+    {
+        public DeleteClientCommandValidator()
+        {
+            RuleFor(e => e.ClientId)
+             .NotEmpty().WithMessage("{PropertyName} should not be empty!")
+             .NotNull().WithMessage("{PropertyName} should not be null!")
+             .GreaterThan(0).WithMessage("{PropertyName} should be greater than zero!");
+        }
     }
 
     public class DeleteClientCommandHandlers : IRequestHandler<DeleteClientCommand, QueryResponse>
@@ -28,9 +40,8 @@ namespace TimesheetsManagementProject.Data.Command.Client
             {
                 Data = saveclient ?? default,
                 IsSuccessful = saveclient != null,
-                Errors = saveclient != null ? default : new() { $"You Can not insert new Clients!!!" }
+                Errors =  new() { $"No Data exists for provided Id {request.ClientId} !!!" } 
             };
-
         }
     }
 }

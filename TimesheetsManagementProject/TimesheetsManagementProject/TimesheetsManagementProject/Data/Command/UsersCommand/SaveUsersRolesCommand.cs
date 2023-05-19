@@ -27,7 +27,7 @@ namespace TimesheetsManagementProject.Data.Command.UsersCommand
             {
                 Data = saveUserRoles ?? default,
                 IsSuccessful = saveUserRoles != null,
-                Errors = saveUserRoles != null ? default : new() { $"You Can not insert new Clients!!!" }
+                Errors = saveUserRoles != null ? default : new() { $"You Can not insert new User Role!!!" }
             };
 
         }

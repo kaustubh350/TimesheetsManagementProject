@@ -12,22 +12,21 @@ namespace TimesheetsManagementProject.Data.Query
 {
     public class GetUserListQuery : IRequest<QueryResponse>
     {
-        [DataMember]
-        public int Id { get; set; }
+     
     }
    
     public class GetUserListQueryHandlers : IRequestHandler<GetUserListQuery, QueryResponse>
     {
-        private readonly IClientsRepository _clientsRepository;
+        private readonly IUserRepository _userRepository;
 
-        public GetUserListQueryHandlers(IClientsRepository clientsRepository)
+        public GetUserListQueryHandlers(IUserRepository userRepository)
         {
-            _clientsRepository = clientsRepository;
+            _userRepository= userRepository;
         }
 
         public async Task<QueryResponse> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
-            var userLists = await _clientsRepository.GetClientById(request.Id);
+            var userLists = await _userRepository.GetUsers();
 
             return new QueryResponse()
             {

@@ -1,16 +1,19 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimesheetsManagementProject.Data.Command;
 using TimesheetsManagementProject.Data.Command.ProjectsCommand;
 using TimesheetsManagementProject.Data.Command.UsersCommand;
+using TimesheetsManagementProject.Data.Query;
 using TimesheetsManagementProject.Data.Query.ProjectsQuery;
 using TimesheetsManagementProject.Models.Domain;
 
 namespace TimesheetsManagementProject.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private IMediator _mediator;
@@ -37,15 +40,6 @@ namespace TimesheetsManagementProject.Controllers
             return users;
         }
 
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[HttpGet("/api/users/role/list")]
-        //public async Task<ActionResult<List<UserRoles>>> GetAllUserRoles()
-        //{
-        //    var userRolesLists = await _mediator.Send(new GetAllUserRolesQuery());
-        //    return Ok(userRolesLists);
-        //}
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("/api/user/role/save")]
@@ -61,6 +55,15 @@ namespace TimesheetsManagementProject.Controllers
                 return null;
             }
             return userRoles;
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpGet("/api/project/user/list")]
+        public async Task<ActionResult<List<Users>>> GetAll()
+        {
+            var userLists = await _mediator.Send(new GetUserListQuery());
+            return Ok(userLists);
         }
     }
 }

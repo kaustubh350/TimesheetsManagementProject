@@ -75,7 +75,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 //builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>(); //also write 2nd para is InMemoryRegionRepository to show data insite that class
 builder.Services.AddScoped<ITokenRepository, TokenRepository>(); //for token creation
 
-builder.Services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+
 //for Token
 builder.Services.AddIdentityCore<IdentityUser>()
 .AddRoles<IdentityRole>()

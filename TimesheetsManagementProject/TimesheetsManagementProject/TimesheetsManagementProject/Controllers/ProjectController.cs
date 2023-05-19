@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TimesheetsManagementProject.Data.Command.Client;
 using TimesheetsManagementProject.Data.Command.ProjectsCommand;
@@ -14,6 +15,7 @@ namespace TimesheetsManagementProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class ProjectController : ControllerBase
     {
         private IMediator _mediator;
@@ -64,6 +66,7 @@ namespace TimesheetsManagementProject.Controllers
             }
             return Ok(response);
         }
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("/api/projects/update")]
@@ -81,14 +84,6 @@ namespace TimesheetsManagementProject.Controllers
             }
 
             return projects;
-        }
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("/api/project/user/list")]
-        public async Task<ActionResult<List<Users>>> GetAll()
-        {
-            var userLists = await _mediator.Send(new GetUserListQuery());
-            return Ok(userLists);
         }
     }
 }
