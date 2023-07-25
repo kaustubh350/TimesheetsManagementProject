@@ -42,12 +42,23 @@ namespace TimesheetsManagementProject.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet("/api/client/list")]
-        public async Task<ActionResult<List<Clients>>> GetAll()
-        {
-            var ClientLists = await _mediator.Send(new GetClientQuery());
-            return Ok(ClientLists);
-        }
+        //public async Task<ActionResult<List<Clients>>> GetAll()
+        //{
+        //    var ClientLists = await _mediator.Send(new GetClientQuery());
+        //    return Ok(ClientLists);
+        //}
+        //pooja
+        //public ActionResult Get()
+        //{
+        //    var clientsFromRepo = _unitOfWork.Clients.GetAll().Where(x => x.isDeleted == false);
 
+        //    return Ok(clientsFromRepo);
+        //}
+        public virtual async Task<IActionResult> GetClients()
+        {
+            var response = await _mediator.Send(new GetClientQuery());
+            return Ok(response);
+        }
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("/api/client/delete")]

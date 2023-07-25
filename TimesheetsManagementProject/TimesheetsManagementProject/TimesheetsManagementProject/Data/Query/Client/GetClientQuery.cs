@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using NPOI.SS.Formula.Functions;
 using TimesheetsManagementProject.CommonData;
+using TimesheetsManagementProject.GenericRepository;
 using TimesheetsManagementProject.Services;
 
 namespace TimesheetsManagementProject.Data.Query.Client
@@ -10,16 +12,16 @@ namespace TimesheetsManagementProject.Data.Query.Client
 
     public class GetClientQueryHandlers : IRequestHandler<GetClientQuery, QueryResponse>
     {
-        private readonly IClientsRepository _clientsRepository;
+        private readonly IGenericRepository<T> _genericRepository;
 
-        public GetClientQueryHandlers(IClientsRepository clientsRepository)
+        public GetClientQueryHandlers(IGenericRepository<T> genericRepository)
         {
-            _clientsRepository= clientsRepository;
+            _genericRepository = genericRepository;
         }
 
-        public async Task<QueryResponse> Handle(GetClientQuery request, CancellationToken cancellationToken)
+        public async  Task<QueryResponse> Handle(GetClientQuery request, CancellationToken cancellationToken)
         {
-            var clientLists = await _clientsRepository.GetClients();
+            var clientLists = _genericRepository.GetAll();
 
             return new QueryResponse()
             {

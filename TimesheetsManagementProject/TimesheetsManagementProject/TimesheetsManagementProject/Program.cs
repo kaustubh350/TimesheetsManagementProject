@@ -11,6 +11,8 @@ using System.Reflection;
 using Microsoft.Data.SqlClient;
 using TimesheetsManagementProject.Services;
 using TimesheetsManagementProject.Mappings;
+using TimesheetsManagementProject.GenericRepository;
+using NPOI.SS.Formula.Functions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
@@ -66,7 +68,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnectionSt
 builder.Services.AddScoped<IUserRepository , UserRepository>();
 builder.Services.AddScoped<IClientsRepository, ClientsRepository>();
 builder.Services.AddScoped<IProjectsRepository, ProjectsRepository>();
-
+builder.Services.AddScoped<IGenericRepository<T>, GenericRepository<T>>();
 
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));

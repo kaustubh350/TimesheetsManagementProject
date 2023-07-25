@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TimesheetsManagementProject.GenericRepository;
 using TimesheetsManagementProject.Models.Domain;
 
 namespace TimesheetsManagementProject.Data
@@ -21,7 +22,6 @@ namespace TimesheetsManagementProject.Data
         {
             
         }
-
         public DbSet<Users> Users { get; set; }
         public DbSet<Clients> Clients { get; set; }
         public DbSet<Designations> Designations { get; set; }

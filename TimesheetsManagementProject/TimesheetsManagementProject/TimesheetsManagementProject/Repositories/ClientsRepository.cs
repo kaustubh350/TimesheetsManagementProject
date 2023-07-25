@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using MySqlX.XDevAPI;
 using System.Configuration;
 using System.Linq.Expressions;
@@ -15,6 +16,7 @@ namespace TimesheetsManagementProject.Services
     {
         private readonly DataContext _dataContext;
         private readonly IConfiguration _configuration;
+
         public ClientsRepository(DataContext dataContext, IConfiguration configuration)
         {
             _dataContext = dataContext;
